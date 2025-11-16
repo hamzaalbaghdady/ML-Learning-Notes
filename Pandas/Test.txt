@@ -1,0 +1,106 @@
+A) Conceptual (10 questions)
+
+What is the difference between .loc[] and .iloc[]?
+Answer: iloc deals with columns as indexes while loc deal with them as names which make it easier to work with.
+
+Why is chained indexing dangerous? Example?
+Answer: I haven't crossed that in kaggel tutorial, so I have no idea.
+
+Explain the difference between groupby().agg() and groupby().apply().
+Answer: agg preforms one or more of aggrgation functions like mean, max, sum, etc,. apply does preform a spesific function or lambda exprission on data.
+
+How does Pandas handle missing values in numerical vs object columns?
+Answer: we can use some of the puilt-in functions like replace, and fillna, or make our logic to fill missing values with what we see is the best fit.
+
+What’s the difference between merge, join, and concat?
+Answer: I havent studied merge, join lets you combine different DataFrame objects which have an index in common, while concat is combine different DataFrames and/or Series in non-trivial ways.
+
+What is a MultiIndex and when does it appear unexpectedly?
+Answer: is when we preform groupby
+
+When should you use pivot_table instead of groupby?
+Answer: I have no idea.
+
+How do you detect and remove outliers? Mention 3 techniques.
+Answre: 1 user standerd devation to detect them
+2 use min and max
+3 i have no clue
+
+Why is inplace=True often discouraged?
+Answer: Because it change the real datafram not just make a copy of it.
+
+What happens when you sort a DataFrame with na_position='first'?
+Answer: I have no idea.
+--------------------------------------------------------------------------------
+B) Practical Coding (10 questions)
+
+Write Pandas code to:
+
+Slice every 7th row from a DataFrame.
+df.loc[:,:,7]
+
+Replace all negative values in a numeric column with zero.
+df.loc[df.column <0].column=0
+
+Count how many times each city appears in a column.
+df.city.value_counts()
+
+Find the top 3 categories by average price.
+df.groupby('category')category.mean.sort_values(by='category',ascending=False)
+
+Extract rows where a text column contains two specific keywords.
+I have no idea how to extract rows.
+Create a new column equal to log(price + 1).
+df['new_column']=log(df.price+1)
+
+Normalize all numeric columns into range [0,1].
+df.map(Lambda x:x if x.dtype!= object x= range(0,1))
+Drop duplicate rows based on two columns only.
+I have no idea how to drop rows.
+Convert a “timestamp” column into day, month, year columns.
+df.['day','month','year']=df.timestamp.somefunction()
+Fill missing values differently based on column type (mean for numeric, mode for object).
+df.fillna()
+
+------------------------------------------------------------------------------------
+
+C) Debugging (5 questions)
+
+You must fix these.
+
+df[df['A'] > 5]['B'] = 10
+df.loc[(df['A'] >5)& (['B']==10)]
+
+df.groupby('category')['price'].apply(lambda x: x.mean)
+df.groupby('category')['price'].apply(lambda x: x.mean())
+
+df.iloc[df['age'] > 30]
+df.loc[df.age>30]
+
+df['date'] = pd.to_datetime(df.date, format='%Y/%d/%m')
+No idea
+df.merge(df2, how='inner', on=['id1','id2','id3'])
+…but the columns in df2 are lowercase.
+no idea
+
+-------------------------------------------------------------------------------------
+You see a column with mean = 20 and std = 200. What does that tell you?
+That tells me that we have too many outliers and data need cleaning or otherwise it cant be worked with.
+
+A column has 97% zeros and 3% non-zero values. What ML issue appears?
+We can not use it because it alwayes will be zero.
+
+Your merge operation explodes rows from 10k → 50k. Why?
+No idea.
+You see NaN appearing after a groupby operation. Why?
+There more than one value with NaN.
+
+You have a category with only 2 samples in the entire dataset. What do you do?
+convert it to numbers
+
+
+
+
+
+
+
